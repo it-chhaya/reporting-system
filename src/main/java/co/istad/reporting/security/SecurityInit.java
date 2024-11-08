@@ -8,6 +8,7 @@ import co.istad.reporting.features.securitygroup.SecurityGroupRepository;
 import co.istad.reporting.features.user.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -21,8 +22,9 @@ public class SecurityInit {
     private final AuthorityRepository authorityRepository;
     private final SecurityGroupRepository securityGroupRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @PostConstruct
+    //@PostConstruct
     void init() {
 
         // User Management
@@ -62,7 +64,7 @@ public class SecurityInit {
         User user = new User();
         user.setUsername("admin");
         user.setEmail("admin@gmail.com");
-        user.setPassword("qwerqwer");
+        user.setPassword(passwordEncoder.encode("qwerqwer"));
         user.setGender("Male");
         user.setDob(LocalDate.of(2000, 1, 1));
         user.setFamilyName("John");
@@ -80,7 +82,7 @@ public class SecurityInit {
         User hello = new User();
         hello.setUsername("staff");
         hello.setEmail("staff@gmail.com");
-        hello.setPassword("qwerqwer");
+        hello.setPassword(passwordEncoder.encode("qwerqwer"));
         hello.setGender("Male");
         hello.setDob(LocalDate.of(2000, 1, 1));
         hello.setFamilyName("John");

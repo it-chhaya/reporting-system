@@ -24,7 +24,7 @@ public class SecurityGroup {
     @ManyToMany(mappedBy = "securityGroups")
     private List<User> users;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "security_groups_authorities",
             joinColumns = @JoinColumn(name = "security_group_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
