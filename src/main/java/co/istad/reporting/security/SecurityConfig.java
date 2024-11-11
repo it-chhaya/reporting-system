@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -61,7 +62,7 @@ public class SecurityConfig {
 
 
     @Bean
-    SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
+    SecurityFilterChain apiSecurity(HttpSecurity http, JwtDecoder jwtDecoder) throws Exception {
 
         // TODO: What security you want to customize?
         http
@@ -71,8 +72,16 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/managers").hasAnyAuthority("report:write", "report:read", "user:read")
                         .requestMatchers("/api/v1/staffs").hasAnyAuthority("report:write", "report:read")
                         .anyRequest().authenticated()
-                )
-                .httpBasic(Customizer.withDefaults());
+                );
+
+        // HTTP Basic Auth Security Mechanism
+        // http.httpBasic(Customizer.withDefaults());
+
+        // JWT Security Mechanism
+        http.oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwtConfigurer -> jwtConfigurer
+                        .decoder(jwtDecoder))
+        );
 
         http.sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
