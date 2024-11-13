@@ -1,16 +1,25 @@
 package co.istad.reporting.security;
 
 import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.KeySourceException;
+import com.nimbusds.jose.jwk.JWK;
+import com.nimbusds.jose.jwk.JWKSelector;
+import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPublicKey;
+import java.util.List;
 import java.util.UUID;
 
 @Configuration
@@ -45,6 +54,17 @@ public class JwtConfig {
         } catch (JOSEException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Bean
+    JWKSource<SecurityContext> accessTokenJWKSource(RSAKey accessTokenRSAKey) {
+        JWKSet jwkSet = new JWKSet(accessTokenRSAKey);
+        return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
+    }
+
+    @Bean
+    JwtEncoder accessTokenJwtEncoder(JWKSource<SecurityContext> accessTokenJWKSource) {
+        return new NimbusJwtEncoder(accessTokenJWKSource);
     }
 
 }

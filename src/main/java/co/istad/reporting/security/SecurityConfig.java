@@ -62,12 +62,12 @@ public class SecurityConfig {
 
 
     @Bean
-    SecurityFilterChain apiSecurity(HttpSecurity http, JwtDecoder jwtDecoder) throws Exception {
+    SecurityFilterChain apiSecurity(HttpSecurity http, JwtDecoder accessTokenJwtDecoder) throws Exception {
 
         // TODO: What security you want to customize?
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/anonymous").permitAll()
+                        .requestMatchers("/anonymous", "/api/v1/auth/**").permitAll()
                         .requestMatchers("/api/v1/admins").hasAnyAuthority("report:write", "report:read", "user:read", "user:write")
                         .requestMatchers("/api/v1/managers").hasAnyAuthority("report:write", "report:read", "user:read")
                         .requestMatchers("/api/v1/staffs").hasAnyAuthority("report:write", "report:read")
@@ -80,12 +80,14 @@ public class SecurityConfig {
         // JWT Security Mechanism
         http.oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwtConfigurer -> jwtConfigurer
-                        .decoder(jwtDecoder))
+                        .decoder(accessTokenJwtDecoder))
         );
 
         http.sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
+
+        http.csrf(token -> token.disable());
 
         return http.build();
     }
