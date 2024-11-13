@@ -2,6 +2,7 @@ package co.istad.reporting.features.auth;
 
 import co.istad.reporting.features.auth.dto.AuthResponse;
 import co.istad.reporting.features.auth.dto.LoginRequest;
+import co.istad.reporting.features.auth.dto.RefreshTokenRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+
+
+    @PostMapping("/refresh-token")
+    AuthResponse refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return authService.refreshToken(refreshTokenRequest);
+    }
+
 
     @PostMapping("/login")
     AuthResponse login(@RequestBody LoginRequest loginRequest) {

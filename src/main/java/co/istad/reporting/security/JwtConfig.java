@@ -67,4 +67,47 @@ public class JwtConfig {
         return new NimbusJwtEncoder(accessTokenJWKSource);
     }
 
+
+    /* Refresh Token */
+    @Bean
+    KeyPair refreshTokenKeyPair() {
+        try {
+            KeyPairGenerator generator = KeyPairGenerator
+                    .getInstance("RSA");
+            generator.initialize(2048);
+            return generator.generateKeyPair();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Bean
+    RSAKey refreshTokenRSAKey(KeyPair refreshTokenKeyPair) {
+        return new RSAKey.Builder((RSAPublicKey) refreshTokenKeyPair.getPublic())
+                .privateKey(refreshTokenKeyPair.getPrivate())
+                .keyID(UUID.randomUUID().toString())
+                .build();
+    }
+
+    @Bean
+    JwtDecoder refreshTokenJwtDecoder(RSAKey refreshTokenRSAKey) {
+        try {
+            return NimbusJwtDecoder
+                    .withPublicKey(refreshTokenRSAKey.toRSAPublicKey())
+                    .build();
+        } catch (JOSEException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Bean
+    JWKSource<SecurityContext> refreshTokenJWKSource(RSAKey refreshTokenRSAKey) {
+        JWKSet jwkSet = new JWKSet(refreshTokenRSAKey);
+        return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
+    }
+
+    @Bean
+    JwtEncoder refreshTokenJwtEncoder(JWKSource<SecurityContext> refreshTokenJWKSource) {
+        return new NimbusJwtEncoder(refreshTokenJWKSource);
+    }
 }
