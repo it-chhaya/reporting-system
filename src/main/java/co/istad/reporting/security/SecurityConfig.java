@@ -68,9 +68,9 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/anonymous", "/api/v1/auth/**").permitAll()
-                        .requestMatchers("/api/v1/admins").hasAnyAuthority("report:write", "report:read", "user:read", "user:write")
-                        .requestMatchers("/api/v1/managers").hasAnyAuthority("report:write", "report:read", "user:read")
-                        .requestMatchers("/api/v1/staffs").hasAnyAuthority("report:write", "report:read")
+                        .requestMatchers("/api/v1/admins").hasAnyAuthority("SCOPE_report:write", "SCOPE_report:read", "SCOPE_user:read", "SCOPE_user:write")
+                        .requestMatchers("/api/v1/managers").hasAnyAuthority("SCOPE_report:write", "SCOPE_report:read", "SCOPE_user:read")
+                        .requestMatchers("/api/v1/staffs").hasAnyAuthority("SCOPE_report:write", "SCOPE_report:read")
                         .anyRequest().authenticated()
                 );
 
