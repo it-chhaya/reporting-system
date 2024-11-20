@@ -1,16 +1,13 @@
 spring:
-  application:
-    name: report-system
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://206.189.33.170:5168/db_system
+    url: jdbc:postgresql://system-db-ya:5432/db_system
     username: admin
     password: qwerqwer
     driver-class-name: org.postgresql.Driver
-#  security:
-#    user:
-#      name: admin
-#      password: admin
+  config:
+    activate:
+      on-profile: docker
