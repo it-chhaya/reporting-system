@@ -1,7 +1,7 @@
-package co.istad.reporting.features.auth;
+package co.istad.reporting.features.system.auth;
 
-import co.istad.reporting.features.auth.dto.AuthResponse;
-import co.istad.reporting.features.auth.dto.RefreshTokenRequest;
+import co.istad.reporting.features.system.auth.dto.AuthResponse;
+import co.istad.reporting.features.system.auth.dto.RefreshTokenRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

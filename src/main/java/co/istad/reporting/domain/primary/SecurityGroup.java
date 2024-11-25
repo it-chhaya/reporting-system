@@ -1,4 +1,4 @@
-package co.istad.reporting.domain;
+package co.istad.reporting.domain.primary;
 
 import jakarta.persistence.*;
 import lombok.Getter;

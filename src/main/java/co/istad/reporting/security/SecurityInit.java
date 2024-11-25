@@ -1,12 +1,11 @@
 package co.istad.reporting.security;
 
-import co.istad.reporting.domain.Authority;
-import co.istad.reporting.domain.SecurityGroup;
-import co.istad.reporting.domain.User;
-import co.istad.reporting.features.authority.AuthorityRepository;
-import co.istad.reporting.features.securitygroup.SecurityGroupRepository;
-import co.istad.reporting.features.user.UserRepository;
-import jakarta.annotation.PostConstruct;
+import co.istad.reporting.domain.primary.Authority;
+import co.istad.reporting.domain.primary.SecurityGroup;
+import co.istad.reporting.domain.primary.User;
+import co.istad.reporting.features.system.authority.AuthorityRepository;
+import co.istad.reporting.features.system.securitygroup.SecurityGroupRepository;
+import co.istad.reporting.features.system.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
