@@ -1,7 +1,7 @@
 package co.istad.reporting.security;
 
-import co.istad.reporting.domain.User;
-import co.istad.reporting.features.user.UserRepository;
+import co.istad.reporting.domain.primary.User;
+import co.istad.reporting.core.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

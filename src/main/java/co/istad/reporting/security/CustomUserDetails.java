@@ -1,6 +1,6 @@
 package co.istad.reporting.security;
 
-import co.istad.reporting.domain.User;
+import co.istad.reporting.domain.primary.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

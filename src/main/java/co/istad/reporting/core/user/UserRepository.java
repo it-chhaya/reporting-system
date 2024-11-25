@@ -1,6 +1,6 @@
-package co.istad.reporting.features.user;
+package co.istad.reporting.core.user;
 
-import co.istad.reporting.domain.User;
+import co.istad.reporting.domain.primary.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

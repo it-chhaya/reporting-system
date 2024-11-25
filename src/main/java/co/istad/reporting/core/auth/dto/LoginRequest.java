@@ -1,4 +1,4 @@
-package co.istad.reporting.features.auth.dto;
+package co.istad.reporting.core.auth.dto;
 
 public record LoginRequest(
         String username,

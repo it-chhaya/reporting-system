@@ -107,7 +107,7 @@ public class SecurityConfig {
         // TODO: What security you want to customize?
         http
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/anonymous", "/api/v1/auth/**").permitAll()
+                        .requestMatchers("/anonymous", "/api/v1/auth/**", "/api/v1/employees/**").permitAll()
                         .requestMatchers("/api/v1/admins").hasAnyAuthority("SCOPE_report:write", "SCOPE_report:read", "SCOPE_user:read", "SCOPE_user:write")
                         .requestMatchers("/api/v1/managers").hasAnyAuthority("SCOPE_report:write", "SCOPE_report:read", "SCOPE_user:read")
                         .requestMatchers("/api/v1/staffs").hasAnyAuthority("SCOPE_report:write", "SCOPE_report:read")

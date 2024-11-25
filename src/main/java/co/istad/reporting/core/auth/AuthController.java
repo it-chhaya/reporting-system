@@ -1,8 +1,8 @@
-package co.istad.reporting.features.auth;
+package co.istad.reporting.core.auth;
 
-import co.istad.reporting.features.auth.dto.AuthResponse;
-import co.istad.reporting.features.auth.dto.LoginRequest;
-import co.istad.reporting.features.auth.dto.RefreshTokenRequest;
+import co.istad.reporting.core.auth.dto.AuthResponse;
+import co.istad.reporting.core.auth.dto.LoginRequest;
+import co.istad.reporting.core.auth.dto.RefreshTokenRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

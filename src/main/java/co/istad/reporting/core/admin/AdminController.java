@@ -1,4 +1,4 @@
-package co.istad.reporting.features.admin;
+package co.istad.reporting.core.admin;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

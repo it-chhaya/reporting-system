@@ -1,4 +1,4 @@
-package co.istad.reporting.features.test;
+package co.istad.reporting.core.test;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

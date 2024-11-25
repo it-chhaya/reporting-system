@@ -3,12 +3,15 @@ spring:
     name: report-system
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: update
-  datasource:
-    url: jdbc:postgresql://206.189.33.170:5168/db_system
-    username: admin
-    password: qwerqwer
+  primary-datasource:
+    jdbcUrl: jdbc:postgresql://localhost:4002/reporting_system
+    username: postgres
+    password: qwer
+    driver-class-name: org.postgresql.Driver
+  secondary-datasource:
+    jdbcUrl: jdbc:postgresql://public.pg.polardb.ap-southeast-5.rds.aliyuncs.com:5432/employees
+    username: chhaya
+    password: "#Reksmey12"
     driver-class-name: org.postgresql.Driver
 #  security:
 #    user:

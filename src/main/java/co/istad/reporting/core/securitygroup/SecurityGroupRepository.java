@@ -1,6 +1,6 @@
-package co.istad.reporting.features.securitygroup;
+package co.istad.reporting.core.securitygroup;
 
-import co.istad.reporting.domain.SecurityGroup;
+import co.istad.reporting.domain.primary.SecurityGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SecurityGroupRepository
